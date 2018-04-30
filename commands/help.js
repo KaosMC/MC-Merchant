@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args) => {
 
     let server = message.guild;
     let user = message.author;
+    let msgChannel = message.channel;
 
     let category = server.channels.find("name", "Tickets");
     if (category) {
@@ -17,8 +18,6 @@ module.exports.run = async (bot, message, args) => {
             channel.overwritePermissions(staffRole, { READ_MESSAGES: true });
             channel.overwritePermissions(user, { READ_MESSAGES: true });
 
-            let msgChannel = message.channel;
-
             let embedMsg = new Discord.RichEmbed()
                 .setAuthor(`Support Ticket Created`)
                 .setDescription(`Channel: #t-${user.username}-${user.discriminator}`)
@@ -30,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
         });
     } else {
         let noExistMsg = "An error has occured.\n\nError: Couldn't find category!";
-        channel.send(noExistMsg).then(noExistMsg => {
+        msgChannel.send(noExistMsg).then(noExistMsg => {
             noExistMsg.delete(15000).catch(e => { });
         });
 
