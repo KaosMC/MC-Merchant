@@ -77,7 +77,6 @@ bot.on("message", async message => {
             if (user.roles.has(merchantRole.id)) {
                 if (amount < 3) {
                     cooldowns.set(id, (Number(amount) + 1).toString());
-                    channel.send(`New Amount: ${cooldowns.get(id)}`);
                 } else {
                     message.delete().then(() => {
                         let maxReached = "You have already reached your maximum amount of messages per day.";
@@ -109,8 +108,6 @@ bot.on("message", async message => {
                     });
                 }
             }
-
-            // Clear Data Everyday On 00:00.
         }
     }
 
