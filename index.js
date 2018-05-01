@@ -80,9 +80,7 @@ bot.on("message", async message => {
                     message.delete().then(() => {
                         let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000).then(() => {
-                                cooldowns.set(id, "4");
-                            });
+                            maxReached.delete(15000);
                         });
                     });
                 }
@@ -93,9 +91,7 @@ bot.on("message", async message => {
                     message.delete().then(() => {
                         let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000).then(() => {
-                                cooldowns.set(id, "3");
-                            });
+                            maxReached.delete(15000);
                         });
                     });
                 }
@@ -106,9 +102,7 @@ bot.on("message", async message => {
                     message.delete().then(() => {
                         let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000).then(() => {
-                                cooldowns.set(id, "2");
-                            });
+                            maxReached.delete(15000);
                         });
                     });
                 }
