@@ -73,10 +73,10 @@ bot.on("message", async message => {
 
             if (user.roles.has(merchantRole.id)) {
                 if (amount < 3) {
-
+                    cooldowns.set(id, Number(amount++).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
                             maxReached.delete(15000).then(() => {
                                 cooldowns.set(id, "3");
@@ -86,10 +86,10 @@ bot.on("message", async message => {
                 }
             } else if (user.roles.has(exporterRole.id)) {
                 if (amount < 2) {
-
+                    cooldowns.set(id, Number(amount++).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
                             maxReached.delete(15000).then(() => {
                                 cooldowns.set(id, "2");
@@ -99,10 +99,10 @@ bot.on("message", async message => {
                 }
             } else {
                 if (amount < 1) {
-
+                    cooldowns.set(id, Number(amount++).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        let maxReached = "You have already reached your maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
                             maxReached.delete(15000).then(() => {
                                 cooldowns.set(id, "1");
