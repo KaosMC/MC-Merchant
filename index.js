@@ -53,8 +53,9 @@ bot.on("message", async message => {
     }
 
     let channel = message.channel;
+    var id = message.author.id;
     if (channel.name === "advertise") {
-        if (bot.commands.has(message.author.id)) {
+        if (bot.commands.has(id)) {
             message.delete();
             let = "You can't send a message!";
             channel.send(msg).then(msg => {
@@ -62,44 +63,50 @@ bot.on("message", async message => {
             });
         } else {
             let server = message.guild;
-            let user = message.author;
+            let user = message.member;
 
             let merchantRole = server.roles.find("name", "merchant");
             let exporterRole = server.roles.find("name", "exporter");
 
             if (user.roles.has(merchantRole.id)) {
-                var amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(message.author.id);
                 if (amount < 3) {
 
                 } else {
                     message.delete().then(() => {
                         let maxReached = "You have already reached you maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
+                            maxReached.delete(15000).then(() => {
+                                cooldowns.set(id, "3");
+                            });
                         });
                     });
                 }
             } else if (user.roles.has(exporterRole)) {
-                var amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(message.author.id);
                 if (amount < 2) {
 
                 } else {
                     message.delete().then(() => {
                         let maxReached = "You have already reached you maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
+                            maxReached.delete(15000).then(() => {
+                                cooldowns.set(id, "2");
+                            });
                         });
                     });
                 }
             } else {
-                var amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(message.author.id);
                 if (amount < 1) {
 
                 } else {
                     message.delete().then(() => {
                         let maxReached = "You have already reached you maximum amount of messages per day.";
                         channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
+                            maxReached.delete(15000).then(() => {
+                                cooldowns.set(id, "1");
+                            });
                         });
                     });
                 }
