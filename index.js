@@ -57,7 +57,7 @@ bot.on("message", async message => {
     if (channel.name === "advertise") {
         if (bot.commands.has(id)) {
             message.delete();
-            let = "You can't send a message!";
+            let msg = "You can't send a message!";
             channel.send(msg).then(msg => {
                 msg.delete(15000);
             });
