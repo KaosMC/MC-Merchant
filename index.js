@@ -68,6 +68,7 @@ bot.on("message", async message => {
 
             let merchantRole = server.roles.find("name", "Merchant");
             let exporterRole = server.roles.find("name", "Exporter");
+            let alertsRole = server.roles.find("name", "alerts");
 
             if (amount == null) cooldowns.set(id, "0");
 
@@ -96,7 +97,7 @@ bot.on("message", async message => {
                         });
                     });
                 }
-            } else {
+            } else if (user.roles.has(alertsRole.id)) {
                 if (amount < 1) {
                     cooldowns.set(id, (Number(amount) + 1).toString());
                 } else {
