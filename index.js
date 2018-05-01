@@ -53,7 +53,7 @@ bot.on("message", async message => {
     }
 
     let channel = message.channel;
-    var id = message.author.id;
+    let id = message.author.id;
     if (channel.name === "advertise") {
         if (bot.commands.has(id)) {
             message.delete();
@@ -69,7 +69,7 @@ bot.on("message", async message => {
             let exporterRole = server.roles.find("name", "exporter");
 
             if (user.roles.has(merchantRole.id)) {
-                let amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(id);
                 if (amount < 3) {
 
                 } else {
@@ -83,7 +83,7 @@ bot.on("message", async message => {
                     });
                 }
             } else if (user.roles.has(exporterRole)) {
-                let amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(id);
                 if (amount < 2) {
 
                 } else {
@@ -97,7 +97,7 @@ bot.on("message", async message => {
                     });
                 }
             } else {
-                let amount = cooldowns.get(message.author.id);
+                let amount = cooldowns.get(id);
                 if (amount < 1) {
 
                 } else {
