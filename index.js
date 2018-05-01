@@ -64,12 +64,14 @@ bot.on("message", async message => {
         } else {
             let server = message.guild;
             let user = message.member;
+            let amount = cooldowns.get(id);
 
             let merchantRole = server.roles.find("name", "Merchant");
             let exporterRole = server.roles.find("name", "Exporter");
 
+            channel.send("Amount: " + amount);
+
             if (user.roles.has(merchantRole.id)) {
-                let amount = cooldowns.get(id);
                 if (amount < 3) {
 
                 } else {
@@ -83,7 +85,6 @@ bot.on("message", async message => {
                     });
                 }
             } else if (user.roles.has(exporterRole.id)) {
-                let amount = cooldowns.get(id);
                 if (amount < 2) {
 
                 } else {
@@ -97,7 +98,6 @@ bot.on("message", async message => {
                     });
                 }
             } else {
-                let amount = cooldowns.get(id);
                 if (amount < 1) {
 
                 } else {
