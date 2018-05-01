@@ -77,7 +77,7 @@ bot.on("message", async message => {
 
             if (user.roles.has(merchantRole.id)) {
                 if (amount < 3) {
-                    cooldowns.set(id, Number(amount++).toString());
+                    cooldowns.set(id, Number(amount + 1).toString());
                     channel.send("Passed into the if statements!");
                 } else {
                     message.delete().then(() => {
