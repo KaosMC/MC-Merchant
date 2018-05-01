@@ -86,10 +86,7 @@ bot.on("message", async message => {
                     cooldowns.set(id, (Number(amount) + 1).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached your maximum amount of messages per day.";
-                        channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
-                        });
+                        message.author.send("You have already reached your maximum amount of messages per day.");
                     });
                 }
             } else if (user.roles.has(exporterRole.id)) {
@@ -97,10 +94,7 @@ bot.on("message", async message => {
                     cooldowns.set(id, (Number(amount) + 1).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached your maximum amount of messages per day.";
-                        channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
-                        });
+                        message.author.send("You have already reached your maximum amount of messages per day.");
                     });
                 }
             } else if (user.roles.has(alertsRole.id)) {
@@ -108,10 +102,7 @@ bot.on("message", async message => {
                     cooldowns.set(id, (Number(amount) + 1).toString());
                 } else {
                     message.delete().then(() => {
-                        let maxReached = "You have already reached your maximum amount of messages per day.";
-                        channel.send(maxReached).then(maxReached => {
-                            maxReached.delete(15000);
-                        });
+                        message.author.send("You have already reached your maximum amount of messages per day.");
                     });
                 }
             }
