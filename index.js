@@ -74,7 +74,7 @@ bot.on("message", async message => {
             amount = cooldowns.get(id);
 
             if (user.roles.has(merchantRole.id)) {
-                if (amount < 3) {
+                if (amount < 4) {
                     cooldowns.set(id, (Number(amount + 1)).toString());
                 } else {
                     message.delete().then(() => {
@@ -87,7 +87,7 @@ bot.on("message", async message => {
                     });
                 }
             } else if (user.roles.has(exporterRole.id)) {
-                if (amount < 2) {
+                if (amount < 3) {
                     cooldowns.set(id, (Number(amount + 1)).toString());
                 } else {
                     message.delete().then(() => {
@@ -100,7 +100,7 @@ bot.on("message", async message => {
                     });
                 }
             } else {
-                if (amount < 1) {
+                if (amount < 2) {
                     cooldowns.set(id, (Number(amount + 1)).toString());
                 } else {
                     message.delete().then(() => {
