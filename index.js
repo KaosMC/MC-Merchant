@@ -1,6 +1,7 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const Enmap = require("enmap");
+
 const bot = new Discord.Client({
     disableEveryone: true
 });
@@ -31,6 +32,12 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
     console.log("MC-Merchant is now online!")
     bot.user.setActivity(`${botconfig.activity}`);
+});
+
+var schedule = require('node-schedule');
+
+var j = schedule.scheduleJob('0 0 0 * * *', function(){
+  cooldowns.deleteAll();
 });
 
 bot.on("message", async message => {
