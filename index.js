@@ -1,6 +1,6 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-const Enmap = require("Enmap");
+const enmap = require("enmap");
 const bot = new Discord.Client({
     disableEveryone: true
 });
