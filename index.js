@@ -119,8 +119,6 @@ bot.on("message", async message => {
             // Everyone - 1 Message / Day
             // Exporter - 2 Messages / Day
             // Merchant - 3 Messages / Day
-
-            bot.commands.set(message.author.id);
         }
     }
 
