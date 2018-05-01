@@ -69,6 +69,8 @@ bot.on("message", async message => {
             let merchantRole = server.roles.find("name", "Merchant");
             let exporterRole = server.roles.find("name", "Exporter");
 
+            if(amount == null) cooldowns.set(id, "0");
+
             channel.send("Amount: " + amount);
 
             if (user.roles.has(merchantRole.id)) {
