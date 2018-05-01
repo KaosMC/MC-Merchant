@@ -71,7 +71,7 @@ bot.on("message", async message => {
 
             if(amount == null) cooldowns.set(id, "0");
 
-            channel.send("Amount: " + amount);
+            amount = cooldowns.get(id);
 
             if (user.roles.has(merchantRole.id)) {
                 if (amount < 3) {
