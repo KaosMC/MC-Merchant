@@ -82,7 +82,7 @@ bot.on("message", async message => {
                         });
                     });
                 }
-            } else if (user.roles.has(exporterRole)) {
+            } else if (user.roles.has(exporterRole.id)) {
                 let amount = cooldowns.get(id);
                 if (amount < 2) {
 
@@ -112,13 +112,7 @@ bot.on("message", async message => {
                 }
             }
 
-            // Data is cleared at 00:00 everyday.
-            // Data is managed through Enmap.
-
-            // Roles:
-            // Everyone - 1 Message / Day
-            // Exporter - 2 Messages / Day
-            // Merchant - 3 Messages / Day
+            // Clear Data Everyday On 00:00.
         }
     }
 
