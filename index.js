@@ -73,12 +73,9 @@ bot.on("message", async message => {
 
             amount = cooldowns.get(id);
 
-            channel.send(amount);
-
             if (user.roles.has(merchantRole.id)) {
                 if (amount < 3) {
-                    cooldowns.set(id, Number(amount + 1).toString());
-                    channel.send("Passed into the if statements!");
+                    cooldowns.set(id, String.prototype.valueOf(Number(amount + 1)));
                 } else {
                     message.delete().then(() => {
                         let maxReached = "You have already reached your maximum amount of messages per day.";
