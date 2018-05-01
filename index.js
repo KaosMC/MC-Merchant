@@ -62,7 +62,7 @@ bot.on("message", async message => {
             });
         } else {
             let server = message.guild;
-            let user = message.member;
+            let user = message.author;
 
             let merchantRole = server.roles.find("name", "merchant");
             let exporterRole = server.roles.find("name", "exporter");
