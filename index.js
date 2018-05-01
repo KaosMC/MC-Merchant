@@ -1,11 +1,14 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
+const Enmap = require("enmap");
 const bot = new Discord.Client({
     disableEveryone: true
 });
 
 const fs = require("fs");
+
 bot.commands = new Discord.Collection();
+const cooldowns = new Enmap();
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -47,6 +50,71 @@ bot.on("message", async message => {
     if (cmd === closeCmd | cmd === helpCmd | cmd === clearCmd) {
         let cmdFile = bot.commands.get(cmd.slice(prefix.length));
         cmdFile.run(bot, message, args);
+    }
+
+    let channel = message.channel;
+    if (channel.name === "advertise") {
+        if (bot.commands.has(message.author.id)) {
+            message.delete();
+            let = "You can't send a message!";
+            channel.send(msg).then(msg => {
+                msg.delete(15000);
+            });
+        } else {
+            let server = message.guild;
+            let user = message.member;
+
+            let merchantRole = server.roles.find("name", "merchant");
+            let exporterRole = server.roles.find("name", "exporter");
+
+            if (user.roles.has(merchantRole.id)) {
+                var amount = cooldowns.get(message.author.id);
+                if (amount < 3) {
+
+                } else {
+                    message.delete().then(() => {
+                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        channel.send(maxReached).then(maxReached => {
+                            maxReached.delete(15000);
+                        });
+                    });
+                }
+            } else if (user.roles.has(exporterRole)) {
+                var amount = cooldowns.get(message.author.id);
+                if (amount < 2) {
+
+                } else {
+                    message.delete().then(() => {
+                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        channel.send(maxReached).then(maxReached => {
+                            maxReached.delete(15000);
+                        });
+                    });
+                }
+            } else {
+                var amount = cooldowns.get(message.author.id);
+                if (amount < 1) {
+
+                } else {
+                    message.delete().then(() => {
+                        let maxReached = "You have already reached you maximum amount of messages per day.";
+                        channel.send(maxReached).then(maxReached => {
+                            maxReached.delete(15000);
+                        });
+                    });
+                }
+            }
+
+            // Data is cleared at 00:00 everyday.
+            // Data is managed through Enmap.
+
+            // Roles:
+            // Everyone - 1 Message / Day
+            // Exporter - 2 Messages / Day
+            // Merchant - 3 Messages / Day
+
+            bot.commands.set(message.author.id);
+        }
     }
 
 });
