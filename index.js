@@ -65,8 +65,8 @@ bot.on("message", async message => {
             let server = message.guild;
             let user = message.member;
 
-            let merchantRole = server.roles.find("name", "merchant");
-            let exporterRole = server.roles.find("name", "exporter");
+            let merchantRole = server.roles.find("name", "Merchant");
+            let exporterRole = server.roles.find("name", "Exporter");
 
             if (user.roles.has(merchantRole.id)) {
                 let amount = cooldowns.get(id);
